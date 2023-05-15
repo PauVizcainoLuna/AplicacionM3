@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="655.0" stylesheets="@images/style_2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectom3_pauvizcaino_javierriscos.Alumnes2Controller">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="655.0" />
+      <Text fill="WHITE" layoutX="240.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALUMNOS 2 ">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font>
+      </Text>
+      <MenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" styleClass="menuButton" text="ALUMNOS">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#cambiarPantalla" text="ALUMNOS 1" />
+        </items>
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </MenuButton>
+   </children>
+</AnchorPane>

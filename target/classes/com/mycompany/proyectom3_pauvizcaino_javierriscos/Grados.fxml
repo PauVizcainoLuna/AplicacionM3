@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="655.0" stylesheets="@images/style_2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectom3_pauvizcaino_javierriscos.GradosController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="655.0" />
+      <Text fill="WHITE" layoutX="255.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GRADOS 1">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font>
+      </Text>
+      <MenuButton layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#cambiarPantalla" styleClass="menuButton" text="GRADOS">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#cambiarPantalla" text="GRADOS 2" />
+        </items>
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </MenuButton>
+      <Button layoutX="524.0" layoutY="714.0" mnemonicParsing="false" onAction="#tornarEnrere" text="VOLVER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="391.0" layoutY="350.0" mnemonicParsing="false" onAction="#AfegirGrados" prefHeight="34.0" prefWidth="111.0" text="AÑADIR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="Añadir" text="Para añadir. rellena los campos de información y haz clic en el boón." />
+         </tooltip>
+      </Button>
+      <TextField fx:id="gradosColor" layoutX="24.0" layoutY="195.0" promptText="Color" />
+      <Label layoutX="184.0" layoutY="199.0" text="COLOR" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="264.0" layoutY="350.0" mnemonicParsing="false" onAction="#eliminarGrados" prefHeight="34.0" prefWidth="110.0" text="ELIMINAR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="Eliminar" text="Para eliminar, seleccione el grado en la tabla y haz clic en el boton." />
+         </tooltip>
+      </Button>
+      <Button layoutX="136.0" layoutY="350.0" mnemonicParsing="false" onAction="#modificarGrados" text="MODIFICAR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="Modificar" text="Para modificar, rellena los campos de información, selecciona el grado en la tabla y haz clic en el botón." />
+         </tooltip>
+      </Button>
+      <ImageView fitHeight="223.0" fitWidth="260.0" layoutX="391.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" styleClass="imageGrados1" />
+      <TableView fx:id="tablaGrados" layoutX="36.0" layoutY="449.0" prefHeight="200.0" prefWidth="578.0">
+        <columns>
+          <TableColumn fx:id="idGrados" prefWidth="268.0" text="ID" />
+          <TableColumn fx:id="colorGrados" minWidth="0.0" prefWidth="309.60003662109375" text="COLOR" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

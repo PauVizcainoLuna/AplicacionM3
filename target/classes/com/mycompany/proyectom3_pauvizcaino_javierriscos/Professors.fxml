@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="655.0" stylesheets="@images/style_2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectom3_pauvizcaino_javierriscos.ProfessorsController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="55.0" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="655.0" />
+      <Text fill="WHITE" layoutX="221.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFESORES 1">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="524.0" layoutY="714.0" mnemonicParsing="false" onAction="#tornarEnrere" text="VOLVER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="258.0" layoutY="395.0" mnemonicParsing="false" onAction="#AfegirProfesor" text="AÑADIR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="Añadir" text="Para añadir. rellena los campos de información y haz clic en el boón." />
+         </tooltip>
+      </Button>
+      <TextField fx:id="profeCognom" layoutX="14.0" layoutY="225.0" prefWidth="150.0" promptText="Apellidos" />
+      <TextField fx:id="profeNom" layoutX="14.0" layoutY="185.0" promptText="Nombre" />
+      <Label layoutX="174.0" layoutY="189.0" text="NOMBRE" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="174.0" layoutY="229.0" text="APELLIDOS" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="315.0" fitWidth="176.0" layoutX="420.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" styleClass="imageProfe1" />
+      <TableView fx:id="tablaProfesores" layoutX="22.0" layoutY="465.0" prefHeight="200.0" prefWidth="610.0">
+         <columns>
+            <TableColumn fx:id="idProfe" prefWidth="80.00006103515625" text="ID" />
+            <TableColumn fx:id="nombreProfe" prefWidth="124.0" text="NOMBRE" />
+            <TableColumn fx:id="apellidosProfe" prefWidth="166.4000244140625" text="APELLIDOS" />
+            <TableColumn fx:id="nombreApellidosProfe" prefWidth="237.60001220703123" text="NOMBRE_APELLIDOS" />
+         </columns>
+      </TableView>
+      <Button layoutX="146.0" layoutY="395.0" mnemonicParsing="false" onAction="#eliminarProfesores" text="ELIMINAR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="Eliminar" text="Para eliminar, seleccione el profesor en la tabla y haz clic en el boton." />
+         </tooltip>
+      </Button>
+      <Button layoutX="22.0" layoutY="395.0" mnemonicParsing="false" onAction="#modificarProfesores" text="MODIFICAR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+         <tooltip>
+            <Tooltip fx:id="Modificar" text="Para modificar, rellena los campos de información, selecciona el profesor en la tabla y haz clic en el botón." />
+         </tooltip>
+      </Button>
+      <MenuButton layoutX="22.0" layoutY="14.0" mnemonicParsing="false" styleClass="menuButton" text="PROFESORES">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#cambiarPantalla" text="PROFESORES 2" />
+         </items>
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+      </MenuButton>
+   </children>
+</AnchorPane>

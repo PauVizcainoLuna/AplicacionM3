@@ -1,0 +1,94 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 10 may 2023, 18:44:04
+    Author     : PauVizcaino
+*/
+
+.root{
+    -fx-background-image:url("2.png");
+    -fx-background-size:cover;
+}
+
+.button {
+    -fx-background-color: black;
+    -fx-border-color: black;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+
+
+.menu-button {
+    -fx-background-color: white;
+    -fx-border-style: solid;
+    -fx-border-color: black;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.rectangle {
+    -fx-fill: black;
+}
+
+
+.imageSeleccion1{
+    -fx-image:url("profesor.png");
+}
+
+.imageSeleccion2{
+    -fx-image:url("alumnos.png");
+}
+
+.imageSeleccion3{
+    -fx-image:url("HORARIO.png");
+}
+
+.imageSeleccion4{
+    -fx-image:url("SALIR.png");
+}
+.imageSeleccion5{
+    -fx-image:url("cinturon.png")
+}
+
+.imageAlumnos1{
+    -fx-image:url("alumnos2.png");
+}
+
+.imageProfe1{
+    -fx-image:url("imageProfes.png")
+}
+
+.imageClases1{
+    -fx-image:url("relojpared.png")
+}
+
+.imageGrados1{
+    -fx-image:url("cinturon2.png")
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: black;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: lightcoral;
+}
+
+.table-view .table-row-cell {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
