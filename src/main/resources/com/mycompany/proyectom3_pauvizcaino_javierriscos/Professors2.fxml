@@ -40,7 +40,7 @@
       </Text>
       <ComboBox fx:id="cmbBoxProfesor" layoutX="22.0" layoutY="207.0" onShowing="#listarProfesores" prefHeight="27.0" prefWidth="176.0" promptText="PROFESOR" styleClass="menu-button" />
       <ComboBox fx:id="cmbBoxAlumne" layoutX="456.0" layoutY="207.0" onShowing="#listarAlumnos" prefHeight="27.0" prefWidth="176.0" promptText="ALUMNO" styleClass="menu-button" />
-      <Button layoutX="276.0" layoutY="203.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="103.0" text="AÑADIR" textFill="WHITE">
+      <Button layoutX="276.0" layoutY="203.0" mnemonicParsing="false" onAction="#AfegirProfesor" prefHeight="34.0" prefWidth="103.0" text="AÑADIR" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

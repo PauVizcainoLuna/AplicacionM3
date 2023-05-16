@@ -518,17 +518,15 @@ public class GestioDades {
             resultado = consulta.executeQuery("SELECT * FROM alumnos ");
             while (resultado.next()) {
                 mListaAlumnos.add(
-                        new Alumne(resultado.getInt("id_alumno"), 
-                                resultado.getString("nombre"), 
-                                resultado.getString("apellidos"), 
-                                resultado.getString("nombre_apellido"), 
-                                resultado.getString("data_naix"), 
-                                resultado.getString("correo_elec"), 
-                                resultado.getString("direccion"), 
-                                resultado.getInt("cod_postal"), 
+                        new Alumne(resultado.getInt("id_alumno"),
+                                resultado.getString("nombre"),
+                                resultado.getString("apellidos"),
+                                resultado.getString("nombre_apellido"),
+                                resultado.getString("data_naix"),
+                                resultado.getString("correo_elec"),
+                                resultado.getString("direccion"),
+                                resultado.getInt("cod_postal"),
                                 resultado.getString("color")));
-
-
 
             }
         } catch (SQLException e) {
@@ -544,10 +542,11 @@ public class GestioDades {
 
         Connection connection = new Connexio().connecta();
         ObservableList<ProfesorAlumne> llistaProfeAlumnos = FXCollections.observableArrayList();
-        String SQL = "SELECT p.nombre_apellido AS nombre_profesor, a.nombre_apellido AS nombre_alumno "
-                + "FROM tienen t "
-                + "JOIN profesores p ON p.id_profesor = t.id_profesor "
-                + "JOIN alumnos a ON a.id_alumno = t.id_alumno";
+        String SQL = "SELECT p.nombre_apellido AS nombre_profesor, a.nombre_apellido AS nombre_alumno\n"
+                + "FROM tienen t\n"
+                + "JOIN profesores p ON p.id_profesor = t.id_profesor\n"
+                + "JOIN alumnos a ON a.id_alumno = t.id_alumno\n"
+                + "ORDER BY p.nombre_apellido;";
 
         try {
             Statement ordreProfeAlumnos = connection.createStatement();
@@ -565,19 +564,34 @@ public class GestioDades {
     }
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
-    //Metodo para la relacion m-n 
 
-    public void insertarAlumnoProfesor(Professor profesor, Alumne alumno) throws SQLException {
-        String SQL = "INSERT INTO tienen (id_profesor, id_alumno) VALUES (?, ?)";
+// Define tu método de inserción
+    public void insertarProfesorAlumno(String nombreProfesor, String nombreAlumno) throws SQLException {
+
+        // Establece la conexión a la base de datos
+        Connection connection = new Connexio().connecta();
+
+        // Crea la consulta SQL de inserción
+        String SQL = "INSERT INTO tienen (id_profesor, id_alumno) VALUES ("
+                + "(SELECT id_profesor FROM profesores WHERE nombre_apellido = '" + nombreProfesor + "'), "
+                + "(SELECT id_alumno FROM alumnos WHERE nombre_apellido = '" + nombreAlumno + "'))";
 
         try {
-            Connection connection = new Connexio().connecta();
-            PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setInt(1, profesor.getID());
-            statement.setInt(2, alumno.getId_alumno());
-            statement.executeUpdate();
-        } catch (SQLException e) {
+            // Crea una declaración para ejecutar la consulta SQL
+            Statement ordreInsert = connection.createStatement();
+
+            // Ejecuta la consulta de inserción
+            int filasAfectadas = ordreInsert.executeUpdate(SQL);
+
+            if (filasAfectadas > 0) {
+                System.out.println("Inserción exitosa");
+            } else {
+                System.out.println("La inserción no tuvo éxito");
+            }
+        } catch (Exception e) {
+            // Muestra una alerta en caso de error
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
     }
+
 }

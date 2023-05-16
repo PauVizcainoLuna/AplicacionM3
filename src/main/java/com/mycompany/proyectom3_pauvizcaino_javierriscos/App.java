@@ -25,6 +25,10 @@ public class App extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+        //Para bloquear el evento de cerrar pantalla desde la x del menu 
+        stage.setOnCloseRequest(event -> {
+            event.consume(); // Anula el evento predeterminado de cierre de ventana
+        });
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -39,6 +43,5 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-    
-  
+
 }

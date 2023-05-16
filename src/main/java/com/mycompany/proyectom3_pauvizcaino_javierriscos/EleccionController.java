@@ -27,6 +27,7 @@ public class EleccionController {
        App.setRoot("Grados");
     }
 
+    //Para salir de la App mediante el metodo, ya que hemos anulado el evento de cerrar ventana
     @FXML
     private void salirApp() throws IOException {
         connexio.mensajeConfirmar();

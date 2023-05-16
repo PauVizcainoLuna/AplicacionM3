@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 .root{
-    -fx-background-image:url("P&j_con_borde.png");
+    -fx-background-image:url("P&j.png");
     -fx-background-size:cover;
 }
 .button {
@@ -18,3 +18,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-radius: 20px;
 }
 
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}

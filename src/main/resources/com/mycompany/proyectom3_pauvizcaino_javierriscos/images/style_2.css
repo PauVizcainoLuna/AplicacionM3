@@ -17,9 +17,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-color: black;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
+    -fx-border-style: solid;
+
 }
-
-
 
 .menu-button {
     -fx-background-color: white;

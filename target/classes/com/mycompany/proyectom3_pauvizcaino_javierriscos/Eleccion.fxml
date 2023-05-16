@@ -69,7 +69,10 @@
                   <Insets bottom="60.0" />
                </GridPane.margin>
             </Button>
-            <ImageView fitHeight="52.0" fitWidth="57.0" onMouseClicked="#salirApp" pickOnBounds="true" preserveRatio="true" styleClass="imageSeleccion4" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+            <ImageView fitHeight="42.0" fitWidth="41.0" onMouseClicked="#salirApp" pickOnBounds="true" preserveRatio="true" styleClass="imageSeleccion4" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="7.0" top="6.0" />
+               </GridPane.margin></ImageView>
             <Button mnemonicParsing="false" onAction="#seguentGrado" text="GRADOS" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Arial Black" size="18.0" />

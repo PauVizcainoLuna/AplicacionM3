@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Alumne;
 import modelo.GestioDades;
+import modelo.ProfesorAlumne;
 import modelo.Professor;
 
 /**
@@ -76,6 +77,39 @@ public class Profressors2Controller {
 
     public static void LlenarComboAlumnos(ComboBox<Alumne> llenarcombo, ObservableList<Alumne> infocombo) {
         llenarcombo.setItems(infocombo);
+    }
+
+    public void AfegirProfesor() throws SQLException {
+        try {
+            // Obtener el nombre del profesor seleccionado en el ComboBox cmbBoxProfesor
+            String nombreProfesor = cmbBoxProfesor.getValue().getNombre_apellidos();
+
+            // Obtener el nombre del alumno seleccionado en el ComboBox cmbBoxAlumne
+            String nombreAlumno = cmbBoxAlumne.getValue().getNombre_apellidos();
+
+            // Verificar si los campos están vacíos
+            if (nombreProfesor == null || nombreAlumno == null) {
+                // Mostrar mensaje de error
+                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor y un alumno.");
+                return; // Salir del método sin crear el profesor
+            }
+
+            // Crear un objeto ProfesorAlumne con los datos proporcionados
+            ProfesorAlumne profesorAlumno = new ProfesorAlumne(nombreProfesor, nombreAlumno);
+
+            // Llamar al método de inserción de ProfesorAlumne
+            gestio.insertarProfesorAlumno(nombreProfesor, nombreAlumno);
+
+            // Limpiar la selección de los ComboBox
+            cmbBoxProfesor.getSelectionModel().clearSelection();
+            cmbBoxAlumne.getSelectionModel().clearSelection();
+        } catch (Exception e) {
+            gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+
+        // Actualizar tabla automáticamente
+        tablaProfesores2.getItems().clear();
+        tablaProfesores2.setItems(gestio.llistaProfeAlumnos());
     }
 
 }
