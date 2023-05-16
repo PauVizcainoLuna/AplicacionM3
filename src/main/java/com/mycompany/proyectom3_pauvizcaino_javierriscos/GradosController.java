@@ -75,6 +75,7 @@ public class GradosController {
 
                 //Dejamos en blanco el textfield
                 gradosColor.setText("");
+                gestio.mostrarAlertCorrecto("HA AÑADIDO EL GRADO CORRECTAMENTE");
 
             }
         } catch (Exception e) {
@@ -92,6 +93,9 @@ public class GradosController {
         try {
             if (tablaGrados.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarGrados(tablaGrados.getSelectionModel().getSelectedItem().getId_grado());
+                //Dejamos en blanco el textfield
+                gestio.mostrarAlertCorrecto("HA ELIMINADO EL GRADO CORRECTAMENTE");
+
             } else {
                 // Mensaje de error si no se ha seleccionado ningún grado
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un grado.");
@@ -115,6 +119,10 @@ public class GradosController {
             if (gradoSeleccionat != null && !gradosColor.getText().isEmpty()) {
                 gestio.modificarGrados(gradoSeleccionat.getId_grado(),
                         gradosColor.getText());
+                //Dejamos en blanco el textfield
+                gradosColor.setText("");
+                gestio.mostrarAlertCorrecto("HA MODIFICADO EL GRADO CORRECTAMENTE");
+
             } else {
                 // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un grado y completar el campo de color.");

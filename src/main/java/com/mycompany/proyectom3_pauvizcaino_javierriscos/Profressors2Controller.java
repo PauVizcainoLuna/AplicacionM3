@@ -95,6 +95,7 @@ public class Profressors2Controller {
 
                 gestio.insertarProfesorAlumno(nombreProfesor.getNombre_apellidos(),
                         nombreAlumnos.getNombre_apellidos());
+                gestio.mostrarAlertCorrecto("HA AÑADIDO EL PROFESOR-ALUMNO CORRECTAMENTE");
 
             }
         } catch (SQLException e) {
@@ -116,6 +117,8 @@ public class Profressors2Controller {
             if (tablaProfesores2.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarProfesorAlumno(tablaProfesores2.getSelectionModel().getSelectedItem().getNombreProfesor(),
                         tablaProfesores2.getSelectionModel().getSelectedItem().getNombreAlumno());
+                gestio.mostrarAlertCorrecto("HA ELIMINADO EL PROFESOR CORRECTAMENTE");
+
             } else {
                 // Mostrar mensaje de error
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");
@@ -142,6 +145,8 @@ public class Profressors2Controller {
                         tablaProfesores2.getSelectionModel().getSelectedItem().getNombreAlumno(),
                         cmbBoxProfesor.getValue().getNombre_apellidos(),
                         cmbBoxAlumne.getValue().getNombre_apellidos());
+                gestio.mostrarAlertCorrecto("HA MODIFICADO EL PROFESOR-ALUMNO CORRECTAMENTE");
+
             } else {
                 // Mostrar mensaje de error 
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");

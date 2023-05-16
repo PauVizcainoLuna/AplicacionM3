@@ -82,6 +82,7 @@ public class ProfessorsController {
                 profeNom.setText("");
                 profeCognom.setText("");
 
+                gestio.mostrarAlertCorrecto("HA AÑADIDO EL PROFESOR CORRECTAMENTE");
             }
 
         } catch (Exception e) {
@@ -99,6 +100,8 @@ public class ProfessorsController {
         try {
             if (tablaProfesores.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarProfesor(tablaProfesores.getSelectionModel().getSelectedItem().getID());
+                gestio.mostrarAlertCorrecto("HA ELIMINADO EL PROFESOR CORRECTAMENTE");
+
             } else {
                 // Mensaje de error si no se ha seleccionado ningún profesor
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor.");
@@ -124,6 +127,8 @@ public class ProfessorsController {
                         profeNom.getText(),
                         profeCognom.getText(),
                         (profeNom.getText() + " " + profeCognom.getText()));
+                gestio.mostrarAlertCorrecto("HA MODIFICADO EL PROFESOR CORRECTAMENTE");
+
             } else {
                 // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor y completar todos los campos.");

@@ -87,6 +87,9 @@ public class ClasesController {
                 //Dejamos en blanco los textfield
                 claseHorario.setText("");
                 cmbProfesores.setValue(null);
+
+                gestio.mostrarAlertCorrecto("HA AÑADIDO LA CLASE CORRECTAMENTE");
+
             }
 
         } catch (Exception e) {
@@ -104,6 +107,9 @@ public class ClasesController {
         try {
             if (tablaClases.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarClases(tablaClases.getSelectionModel().getSelectedItem().getID());
+
+                gestio.mostrarAlertCorrecto("HA ELIMINADO LA CLASE CORRECTAMENTE");
+
             } else {
                 // Mostrar mensaje de error si no se ha seleccionado ninguna clase
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar una clase para eliminar.");
@@ -135,6 +141,8 @@ public class ClasesController {
                 //Dejamos en blanco los textfield
                 claseHorario.setText("");
                 cmbProfesores.setValue(null);
+                gestio.mostrarAlertCorrecto("HA MODIFICADO LA CLASE CORRECTAMENTE");
+
             } else {
                 // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar una clase, un profesor y completar el campo de horario.");

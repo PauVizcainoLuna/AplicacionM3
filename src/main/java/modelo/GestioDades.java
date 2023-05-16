@@ -26,6 +26,16 @@ public class GestioDades {
         alert.setContentText(error);
         alert.showAndWait();
     }
+       //---------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------
+    //Metodo WARING
+    public void mostrarAlertCorrecto(String correcto) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setTitle("CORRECTO");
+        alert.setContentText(correcto);
+        alert.showAndWait();
+    }
 
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
