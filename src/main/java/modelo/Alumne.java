@@ -16,6 +16,11 @@ public class Alumne {
 
     }
 
+    public Alumne(String nombre_apellidos) {
+        this.nombre_apellidos = nombre_apellidos;
+    }
+    
+
     public Alumne(int id_alumno, String nombre, String apellidos, String nombre_apellidos, String data_naix, String correo_elec, String direccion, int cod_postal, String colorGrado) {
         this.id_alumno = id_alumno;
         this.nombre = nombre;

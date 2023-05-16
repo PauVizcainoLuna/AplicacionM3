@@ -546,7 +546,7 @@ public class GestioDades {
                 + "FROM tienen t\n"
                 + "JOIN profesores p ON p.id_profesor = t.id_profesor\n"
                 + "JOIN alumnos a ON a.id_alumno = t.id_alumno\n"
-                + "ORDER BY p.nombre_apellido;";
+                + "ORDER BY p.nombre_apellido, a.nombre_apellido";
 
         try {
             Statement ordreProfeAlumnos = connection.createStatement();
@@ -565,33 +565,85 @@ public class GestioDades {
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
 
-// Define tu método de inserción
+// Metodo para insertarProfesorAlumno a la tabla tienen, mediante sus id, mostrando el nombre_apellido
     public void insertarProfesorAlumno(String nombreProfesor, String nombreAlumno) throws SQLException {
 
         // Establece la conexión a la base de datos
         Connection connection = new Connexio().connecta();
 
-        // Crea la consulta SQL de inserción
-        String SQL = "INSERT INTO tienen (id_profesor, id_alumno) VALUES ("
-                + "(SELECT id_profesor FROM profesores WHERE nombre_apellido = '" + nombreProfesor + "'), "
-                + "(SELECT id_alumno FROM alumnos WHERE nombre_apellido = '" + nombreAlumno + "'))";
+        // Crea la consulta SQL de inserción con parámetros
+        String SQL = "INSERT INTO tienen (id_profesor, id_alumno) "
+                + "SELECT p.id_profesor, a.id_alumno "
+                + "FROM profesores p, alumnos a "
+                + "WHERE p.nombre_apellido = ? AND a.nombre_apellido = ?";
 
         try {
-            // Crea una declaración para ejecutar la consulta SQL
-            Statement ordreInsert = connection.createStatement();
+            // Crea una declaración preparada para ejecutar la consulta SQL
+            PreparedStatement statement = connection.prepareStatement(SQL);
 
-            // Ejecuta la consulta de inserción
-            int filasAfectadas = ordreInsert.executeUpdate(SQL);
+            // Establece los valores de los parámetros en la consulta preparada
+            statement.setString(1, nombreProfesor);
+            statement.setString(2, nombreAlumno);
+            statement.execute();
 
-            if (filasAfectadas > 0) {
-                System.out.println("Inserción exitosa");
-            } else {
-                System.out.println("La inserción no tuvo éxito");
-            }
         } catch (Exception e) {
             // Muestra una alerta en caso de error
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
     }
 
+    //---------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------
+    //Metodo para elimianrProfesorAlumno
+    public void eliminarProfesorAlumno(String nombreProfesor, String nombreAlumno) throws SQLException {
+        try {
+            // Establece la conexión a la base de datos
+            Connection connection = new Connexio().connecta();
+
+            // Crea la consulta SQL de eliminación con parámetros
+            String SQL = "DELETE FROM tienen WHERE id_profesor = "
+                    + "(SELECT id_profesor FROM profesores WHERE nombre_apellido = ?)"
+                    + " AND id_alumno = (SELECT id_alumno FROM alumnos WHERE nombre_apellido = ?)";
+
+            // Crea una declaración preparada para ejecutar la consulta SQL
+            PreparedStatement statement = connection.prepareStatement(SQL);
+
+            // Establece los valores de los parámetros en la consulta preparada
+            statement.setString(1, nombreProfesor);
+            statement.setString(2, nombreAlumno);
+
+            // Ejecuta la consulta
+            statement.executeUpdate();
+
+            // Cierra la conexión y la declaración
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            // Muestra una alerta en caso de error
+            this.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------
+    public void modificarProfesorAlumno(String nombreProfesorAnterior, String nombreAlumnoAnterior, String nuevoNombreProfesor, String nuevoNombreAlumno) throws SQLException {
+
+        String SQL = "UPDATE tienen SET id_profesor = "
+                + "(SELECT id_profesor FROM profesores WHERE nombre_apellido = ?), "
+                + "id_alumno = (SELECT id_alumno FROM alumnos WHERE nombre_apellido = ?) "
+                + "WHERE id_profesor = (SELECT id_profesor FROM profesores WHERE nombre_apellido = ?) "
+                + "AND id_alumno = (SELECT id_alumno FROM alumnos WHERE nombre_apellido = ?)";
+
+        Connection connection = new Connexio().connecta();
+        PreparedStatement ordreModificar = connection.prepareStatement(SQL);
+        try {
+            ordreModificar.setString(1, nuevoNombreProfesor);
+            ordreModificar.setString(2, nuevoNombreAlumno);
+            ordreModificar.setString(3, nombreProfesorAnterior);
+            ordreModificar.setString(4, nombreAlumnoAnterior);
+            ordreModificar.executeUpdate();
+        } catch (Exception e) {
+            this.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+    }
 }

@@ -28,7 +28,7 @@ public class Profressors2Controller {
     GestioDades gestio = new GestioDades();
 
     @FXML
-    private TableView<Professor> tablaProfesores2;
+    private TableView<ProfesorAlumne> tablaProfesores2;
     @FXML
     private TableColumn<Professor, Integer> nombreProfe;
     @FXML
@@ -79,6 +79,8 @@ public class Profressors2Controller {
         llenarcombo.setItems(infocombo);
     }
 
+    //---------------------------------------------------------------------------------------------------------------------------
+    //Metodo para afegirProfesorAlumno usando el metodo de insertarProfeorAlumno de gestio dades
     public void AfegirProfesor() throws SQLException {
         try {
             // Obtener el nombre del profesor seleccionado en el ComboBox cmbBoxProfesor
@@ -103,6 +105,61 @@ public class Profressors2Controller {
             // Limpiar la selección de los ComboBox
             cmbBoxProfesor.getSelectionModel().clearSelection();
             cmbBoxAlumne.getSelectionModel().clearSelection();
+        } catch (Exception e) {
+            gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+
+        // Actualizar tabla automáticamente
+        tablaProfesores2.getItems().clear();
+        tablaProfesores2.setItems(gestio.llistaProfeAlumnos());
+    }
+    //---------------------------------------------------------------------------------------------------------------------------
+
+    public void eliminarProfesorAlumno() throws SQLException {
+        try {
+            // Obtener el profesor-alumno seleccionado en la tabla
+            ProfesorAlumne profesorAlumno = tablaProfesores2.getSelectionModel().getSelectedItem();
+
+            // Verificar si se ha seleccionado un profesor-alumno
+            if (profesorAlumno == null) {
+                // Mostrar mensaje de error
+                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");
+                return; // Salir del método sin eliminar el profesor-alumno
+            }
+
+            // Llamar al método de eliminación de ProfesorAlumno y obtener los nombres de Profesor y alumno
+            gestio.eliminarProfesorAlumno(profesorAlumno.getNombreProfesor(), profesorAlumno.getNombreAlumno());
+
+            // Limpiar la selección de la tabla
+            tablaProfesores2.getSelectionModel().clearSelection();
+        } catch (SQLException e) {
+            gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+
+        // Actualizar tabla automáticamente
+        tablaProfesores2.getItems().clear();
+        tablaProfesores2.setItems(gestio.llistaProfeAlumnos());
+    }
+    //---------------------------------------------------------------------------------------------------------------------------
+
+    public void modificarProfesoresAlumnos() throws SQLException {
+        try {
+            ProfesorAlumne profesorSeleccionat = tablaProfesores2.getSelectionModel().getSelectedItem();
+
+            // Verificar si hay un profesor-alumno seleccionado
+            if (profesorSeleccionat != null) {
+
+                //Asignamos a traves del metodo modificarProfesorAlumno de gestioDades
+                gestio.modificarProfesorAlumno(profesorSeleccionat.getNombreProfesor(),
+                        profesorSeleccionat.getNombreAlumno(),
+                        cmbBoxProfesor.getValue().getNombre_apellidos(),
+                        cmbBoxAlumne.getValue().getNombre_apellidos());
+            } else {
+                // Mostrar mensaje de error si no hay profesor-alumno seleccionado
+                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");
+                return; // Salir del método sin modificar el profesor-alumno
+            }
+
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }

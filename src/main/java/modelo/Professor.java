@@ -10,6 +10,10 @@ public class Professor {
     public Professor() {
 
     }
+
+    public Professor(String nombre_apellidos) {
+        this.nombre_apellidos = nombre_apellidos;
+    }
     
 
     public Professor(int ID) {
