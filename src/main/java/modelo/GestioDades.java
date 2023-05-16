@@ -43,9 +43,6 @@ public class GestioDades {
                 id = resultSet.getInt(1);
             }
 
-            resultSet.close();
-            statement.close();
-            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -69,9 +66,6 @@ public class GestioDades {
                 id = resultSet.getInt(1);
             }
 
-            resultSet.close();
-            statement.close();
-            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -95,9 +89,6 @@ public class GestioDades {
                 id = resultSet.getInt(1);
             }
 
-            resultSet.close();
-            statement.close();
-            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -121,9 +112,6 @@ public class GestioDades {
                 id = resultSet.getInt(1);
             }
 
-            resultSet.close();
-            statement.close();
-            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
