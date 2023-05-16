@@ -7,11 +7,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : PauVizcaino
 */
 
+/*Estilo para la raiz*/
 .root{
     -fx-background-image:url("2.png");
     -fx-background-size:cover;
 }
 
+/*Estilo para los botones*/
 .button {
     -fx-background-color: black;
     -fx-border-color: black;
@@ -21,6 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 }
 
+/*Estilo para los botones de menu*/
 .menu-button {
     -fx-background-color: white;
     -fx-border-style: solid;
@@ -29,63 +32,77 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-radius: 20px;
 }
 
+/*Estilo para los rectangulos*/
 .rectangle {
     -fx-fill: black;
 }
 
-
+/*Estilo para la imagen 1 de seleccion*/
 .imageSeleccion1{
     -fx-image:url("profesor.png");
 }
 
+/*Estilo para la imagen 2 de seleccion*/
 .imageSeleccion2{
     -fx-image:url("alumnos.png");
 }
 
+/*Estilo para la imagen 3 de seleccion*/
 .imageSeleccion3{
     -fx-image:url("HORARIO.png");
 }
 
+/*Estilo para la imagen 4 de seleccion - SALIR DE LA APP*/
 .imageSeleccion4{
     -fx-image:url("SALIR.png");
 }
+
+/*Estilo para la imagen 5 de seleccion*/
 .imageSeleccion5{
     -fx-image:url("cinturon.png")
 }
 
+/*Estilo para la imagen 1 de alumnos*/
 .imageAlumnos1{
     -fx-image:url("alumnos2.png");
 }
 
+/*Estilo para la imagen 1 de profesor*/
 .imageProfe1{
     -fx-image:url("imageProfes.png")
 }
 
+/*Estilo para la imagen 1 de lcases*/
 .imageClases1{
     -fx-image:url("relojpared.png")
 }
 
+/*Estilo para la imagen 1 de grados*/
 .imageGrados1{
     -fx-image:url("cinturon2.png")
 }
 
+/*Estilo para las letras del header columna de la tableview*/
 .table-view .column-header .label {
     -fx-text-fill: white;
 }
-
+/*Estilo para el header del tableview*/
 .table-view .column-header {
     -fx-background-color: black;
 }
 
+/*Estilo para cuando pasas el raton por encima de las celdas de las filas del la tabla*/
 .table-row-cell:hover {
     -fx-background-color: lightcoral;
 }
 
+/*Estilo para las celdas de la filas de la tabla*/
 .table-view .table-row-cell {
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
 
+/*Estilo para los campos donde se introduce el texto - TEXTFIELD*/
 .text-field {
     -fx-background-color: white;
     -fx-border-color: black;

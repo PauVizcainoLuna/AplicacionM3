@@ -114,37 +114,36 @@ public class AlumnesController {
         try {
             Grados grado = cmbGrados.getValue();
 
-            // Verificar si algún campo de texto está vacío
+            // Verificar si algún campo esta vacío
             if (usuariNom.getText().isEmpty() || usuariCognom.getText().isEmpty() || usuariDataNaix.getText().isEmpty()
                     || usuariCorreu.getText().isEmpty() || usuariDireccio.getText().isEmpty() || usuariCodPostal.getText().isEmpty()
                     || grado == null) {
-                // Mostrar mensaje de error
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes completar todos los campos y seleccionar un grado.");
-                return; // Salir del método sin agregar el alumno
+            } else {
+
+                Alumne alumne = new Alumne(
+                        gestio.generarIdAlumnos(),
+                        usuariNom.getText(),
+                        usuariCognom.getText(),
+                        (usuariNom.getText() + " " + usuariCognom.getText()),
+                        usuariDataNaix.getText(),
+                        usuariCorreu.getText(),
+                        usuariDireccio.getText(),
+                        Integer.parseInt(usuariCodPostal.getText()),
+                        grado.getColor()
+                );
+                gestio.AfegirAlumne(alumne, grado);
+
+                //Dejamos en blanco los textfield
+                usuariNom.setText("");
+                usuariCognom.setText("");
+                usuariDataNaix.setText("");
+                usuariCorreu.setText("");
+                usuariDireccio.setText("");
+                usuariCodPostal.setText("");
+                cmbGrados.setValue(null);
             }
-
-            Alumne alumne = new Alumne(
-                    gestio.generarIdAlumnos(),
-                    usuariNom.getText(),
-                    usuariCognom.getText(),
-                    (usuariNom.getText() + " " + usuariCognom.getText()),
-                    usuariDataNaix.getText(),
-                    usuariCorreu.getText(),
-                    usuariDireccio.getText(),
-                    Integer.parseInt(usuariCodPostal.getText()),
-                    grado.getColor()
-            );
-            gestio.AfegirAlumne(alumne, grado);
-
-            //Dejamos en blanco los textfield
-            usuariNom.setText("");
-            usuariCognom.setText("");
-            usuariDataNaix.setText("");
-            usuariCorreu.setText("");
-            usuariDireccio.setText("");
-            usuariCodPostal.setText("");
-            cmbGrados.setValue(null);
-
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -163,7 +162,6 @@ public class AlumnesController {
             } else {
                 // Mostrar mensaje de error si no se ha seleccionado ningún alumno
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un alumno.");
-                return; // Salir del método sin eliminar el alumno
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
@@ -195,9 +193,8 @@ public class AlumnesController {
                         usuariDireccio.getText(),
                         Integer.parseInt(usuariCodPostal.getText()));
             } else {
-                // Mostrar mensaje de error si falta información
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un alumno, completar todos los campos y seleccionar un grado.");
-                return; // Salir del método sin modificar el alumno
             }
 
             //Dejamos en blanco los textfield

@@ -83,28 +83,44 @@ public class Profressors2Controller {
     //Metodo para afegirProfesorAlumno usando el metodo de insertarProfeorAlumno de gestio dades
     public void AfegirProfesor() throws SQLException {
         try {
-            // Obtener el nombre del profesor seleccionado en el ComboBox cmbBoxProfesor
-            String nombreProfesor = cmbBoxProfesor.getValue().getNombre_apellidos();
+            Professor nombreProfesor = cmbBoxProfesor.getValue();
+            Alumne nombreAlumnos = cmbBoxAlumne.getValue();
 
-            // Obtener el nombre del alumno seleccionado en el ComboBox cmbBoxAlumne
-            String nombreAlumno = cmbBoxAlumne.getValue().getNombre_apellidos();
+            // Verificar si algun campo esta vacio
+            if (nombreProfesor == null || nombreAlumnos == null) {
+                // Mensaje de error si no se han completado todos los campos
 
-            // Verificar si los campos están vacíos
-            if (nombreProfesor == null || nombreAlumno == null) {
-                // Mostrar mensaje de error
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor y un alumno.");
-                return; // Salir del método sin crear el profesor
+            } else {
+
+                gestio.insertarProfesorAlumno(nombreProfesor.getNombre_apellidos(),
+                        nombreAlumnos.getNombre_apellidos());
+
             }
+        } catch (SQLException e) {
+            gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+        // Limpiar la selección de los ComboBox
+        cmbBoxProfesor.getSelectionModel().clearSelection();
+        cmbBoxAlumne.getSelectionModel().clearSelection();
+        // Actualizar tabla automáticamente
+        tablaProfesores2.getItems().clear();
+        tablaProfesores2.setItems(gestio.llistaProfeAlumnos());
 
-            // Crear un objeto ProfesorAlumne con los datos proporcionados
-            ProfesorAlumne profesorAlumno = new ProfesorAlumne(nombreProfesor, nombreAlumno);
+    }
 
-            // Llamar al método de inserción de ProfesorAlumne
-            gestio.insertarProfesorAlumno(nombreProfesor, nombreAlumno);
+//---------------------------------------------------------------------------------------------------------------------------
+    public void eliminarProfesorAlumno() throws SQLException {
+        try {
+            // Obtener el profesor-alumno seleccionado en la tabla
+            if (tablaProfesores2.getSelectionModel().getSelectedItem() != null) {
+                gestio.eliminarProfesorAlumno(tablaProfesores2.getSelectionModel().getSelectedItem().getNombreProfesor(),
+                        tablaProfesores2.getSelectionModel().getSelectedItem().getNombreAlumno());
+            } else {
+                // Mostrar mensaje de error
+                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");
 
-            // Limpiar la selección de los ComboBox
-            cmbBoxProfesor.getSelectionModel().clearSelection();
-            cmbBoxAlumne.getSelectionModel().clearSelection();
+            }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -112,58 +128,33 @@ public class Profressors2Controller {
         // Actualizar tabla automáticamente
         tablaProfesores2.getItems().clear();
         tablaProfesores2.setItems(gestio.llistaProfeAlumnos());
-    }
-    //---------------------------------------------------------------------------------------------------------------------------
 
-    public void eliminarProfesorAlumno() throws SQLException {
-        try {
-            // Obtener el profesor-alumno seleccionado en la tabla
-            ProfesorAlumne profesorAlumno = tablaProfesores2.getSelectionModel().getSelectedItem();
-
-            // Verificar si se ha seleccionado un profesor-alumno
-            if (profesorAlumno == null) {
-                // Mostrar mensaje de error
-                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");
-                return; // Salir del método sin eliminar el profesor-alumno
-            }
-
-            // Llamar al método de eliminación de ProfesorAlumno y obtener los nombres de Profesor y alumno
-            gestio.eliminarProfesorAlumno(profesorAlumno.getNombreProfesor(), profesorAlumno.getNombreAlumno());
-
-            // Limpiar la selección de la tabla
-            tablaProfesores2.getSelectionModel().clearSelection();
-        } catch (SQLException e) {
-            gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
-        }
-
-        // Actualizar tabla automáticamente
-        tablaProfesores2.getItems().clear();
-        tablaProfesores2.setItems(gestio.llistaProfeAlumnos());
     }
     //---------------------------------------------------------------------------------------------------------------------------
 
     public void modificarProfesoresAlumnos() throws SQLException {
         try {
-            ProfesorAlumne profesorSeleccionat = tablaProfesores2.getSelectionModel().getSelectedItem();
 
             // Verificar si hay un profesor-alumno seleccionado
-            if (profesorSeleccionat != null) {
+            if (tablaProfesores2.getSelectionModel().getSelectedItem() != null) {
 
-                //Asignamos a traves del metodo modificarProfesorAlumno de gestioDades
-                gestio.modificarProfesorAlumno(profesorSeleccionat.getNombreProfesor(),
-                        profesorSeleccionat.getNombreAlumno(),
+                gestio.modificarProfesorAlumno(tablaProfesores2.getSelectionModel().getSelectedItem().getNombreProfesor(),
+                        tablaProfesores2.getSelectionModel().getSelectedItem().getNombreAlumno(),
                         cmbBoxProfesor.getValue().getNombre_apellidos(),
                         cmbBoxAlumne.getValue().getNombre_apellidos());
             } else {
-                // Mostrar mensaje de error si no hay profesor-alumno seleccionado
+                // Mostrar mensaje de error 
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor-alumno.");
-                return; // Salir del método sin modificar el profesor-alumno
+
             }
 
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
 
+        // Limpiar la selección de los ComboBox
+        cmbBoxProfesor.getSelectionModel().clearSelection();
+        cmbBoxAlumne.getSelectionModel().clearSelection();
         // Actualizar tabla automáticamente
         tablaProfesores2.getItems().clear();
         tablaProfesores2.setItems(gestio.llistaProfeAlumnos());

@@ -74,21 +74,21 @@ public class ClasesController {
             Professor profesor = cmbProfesores.getValue();
             String horario = claseHorario.getText();
 
-            // Verificar si el campo de texto y la selección del profesor están completos
-            if (profesor != null && !horario.isEmpty()) {
+            // Verificar si algun campo esta vacio
+            if (profesor == null || horario.isEmpty()) {
+                // Mensaje de error si no se han completado todos los campos
+                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor y completar el campo de horario.");
+
+            } else {
                 Clases clases = new Clases(gestio.generarIdClases(),
                         horario,
                         profesor.getNombre_apellidos());
                 gestio.AfegirClase(clases, profesor);
-            } else {
-                // Mostrar mensaje de error si falta información
-                gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor y completar el campo de horario.");
-                return; // Salir del método sin agregar la clase
+                //Dejamos en blanco los textfield
+                claseHorario.setText("");
+                cmbProfesores.setValue(null);
             }
 
-            //Dejamos en blanco los textfield
-            claseHorario.setText("");
-            cmbProfesores.setValue(null);
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -107,7 +107,6 @@ public class ClasesController {
             } else {
                 // Mostrar mensaje de error si no se ha seleccionado ninguna clase
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar una clase para eliminar.");
-                return; // Salir del método sin eliminar ninguna clase
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
@@ -137,9 +136,8 @@ public class ClasesController {
                 claseHorario.setText("");
                 cmbProfesores.setValue(null);
             } else {
-                // Mostrar mensaje de error si falta información
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar una clase, un profesor y completar el campo de horario.");
-                return; // Salir del método sin modificar la clase
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());

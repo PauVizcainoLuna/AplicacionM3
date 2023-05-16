@@ -64,19 +64,19 @@ public class GradosController {
     //Metodo para añadir grados desde afegirgrados de GestioDades
     public void AfegirGrados() throws SQLException {
         try {
-            // Verificar si el campo está vacío
+            // Verificar si algun campo esta vacio
             if (gradosColor.getText().isEmpty()) {
-                // Mostrar mensaje de error
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes completar el campo de color.");
-                return; // Salir del método sin agregar el grado
+            } else {
+                Grados grados = new Grados(gestio.generarIdGrados(),
+                        gradosColor.getText());
+                gestio.AfegirGrados(grados);
+
+                //Dejamos en blanco el textfield
+                gradosColor.setText("");
+
             }
-
-            Grados grados = new Grados(gestio.generarIdGrados(),
-                    gradosColor.getText());
-            gestio.AfegirGrados(grados);
-
-            //Dejamos en blanco el textfield
-            gradosColor.setText("");
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -93,9 +93,8 @@ public class GradosController {
             if (tablaGrados.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarGrados(tablaGrados.getSelectionModel().getSelectedItem().getId_grado());
             } else {
-                // Mostrar mensaje de error si no se ha seleccionado ningún grado
+                // Mensaje de error si no se ha seleccionado ningún grado
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un grado.");
-                return; // Salir del método sin eliminar el grado
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
@@ -117,9 +116,8 @@ public class GradosController {
                 gestio.modificarGrados(gradoSeleccionat.getId_grado(),
                         gradosColor.getText());
             } else {
-                // Mostrar mensaje de error si falta información
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un grado y completar el campo de color.");
-                return; // Salir del método sin modificar el grado
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());

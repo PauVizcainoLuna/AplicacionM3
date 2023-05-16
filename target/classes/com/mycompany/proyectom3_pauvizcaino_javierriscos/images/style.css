@@ -7,10 +7,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : PauVizcaino
 */
 
+/*Estilo para la raiz*/
 .root{
     -fx-background-image:url("P&j.png");
     -fx-background-size:cover;
 }
+
+/*Estilo para los botones*/
 .button {
     -fx-background-color: black;
     -fx-border-color: black;
@@ -18,6 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-radius: 20px;
 }
 
+/*Estilo para los campos donde se introduce el texto - TEXTFIELD*/
 .text-field {
     -fx-background-color: white;
     -fx-border-color: black;

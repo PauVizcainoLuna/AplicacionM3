@@ -30,7 +30,7 @@
             <Font name="Arial Black" size="12.0" />
          </font>
       </MenuButton>
-      <TableView fx:id="tablaProfesores2" layoutX="22.0" layoutY="465.0" prefHeight="200.0" prefWidth="610.0">
+      <TableView fx:id="tablaProfesores2" layoutX="22.0" layoutY="465.0" prefHeight="280.0" prefWidth="610.0">
          <columns>
             <TableColumn fx:id="nombreProfe" prefWidth="299.20001220703125" text="PROFESOR" />
             <TableColumn fx:id="nombreAlumno" minWidth="4.79998779296875" prefWidth="309.6000122070312" text="ALUMNO" />

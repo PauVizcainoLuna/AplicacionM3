@@ -62,25 +62,28 @@ public class ProfessorsController {
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
+    //Metodo para añadir profesor desde AfegirProfesor de GestioDdaes
     public void AfegirProfesor() throws SQLException {
         try {
-            // Verificar si los campos están vacíos
+            // Verificar si los algun campo esta vacio
             if (profeNom.getText().isEmpty() || profeCognom.getText().isEmpty()) {
-                // Mostrar mensaje de error
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes completar todos los campos.");
-                return; // Salir del método sin crear el profesor
+
+            } else {
+                Professor profesor = new Professor(gestio.generarIdProfesores(),
+                        profeNom.getText(),
+                        profeCognom.getText(),
+                        (profeNom.getText() + " " + profeCognom.getText()));
+
+                gestio.AfegirProfesor(profesor);
+
+                // Dejar en blanco los campos de texto
+                profeNom.setText("");
+                profeCognom.setText("");
+
             }
 
-            Professor profesor = new Professor(gestio.generarIdProfesores(),
-                    profeNom.getText(),
-                    profeCognom.getText(),
-                    (profeNom.getText() + " " + profeCognom.getText()));
-
-            gestio.AfegirProfesor(profesor);
-
-            // Dejar en blanco los campos de texto
-            profeNom.setText("");
-            profeCognom.setText("");
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
@@ -97,9 +100,8 @@ public class ProfessorsController {
             if (tablaProfesores.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarProfesor(tablaProfesores.getSelectionModel().getSelectedItem().getID());
             } else {
-                // Mostrar mensaje de error si no se ha seleccionado ningún profesor
+                // Mensaje de error si no se ha seleccionado ningún profesor
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor.");
-                return; // Salir del método sin eliminar el profesor
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
@@ -115,7 +117,7 @@ public class ProfessorsController {
         try {
             Professor profesorSeleccionat = tablaProfesores.getSelectionModel().getSelectedItem();
 
-            // Verificar si hay un profesor seleccionado y los campos no están vacíos
+            // Verificar si hay un profesor seleccionado y los campos no estan vacios
             if (profesorSeleccionat != null && !profeNom.getText().isEmpty() && !profeCognom.getText().isEmpty()) {
 
                 gestio.modificarProfesor(profesorSeleccionat.getID(),
@@ -123,13 +125,15 @@ public class ProfessorsController {
                         profeCognom.getText(),
                         (profeNom.getText() + " " + profeCognom.getText()));
             } else {
-                // Mostrar mensaje de error si falta información
+                // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un profesor y completar todos los campos.");
-                return; // Salir del método sin modificar el profesor
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
+        // Dejar en blanco los campos de texto
+        profeNom.setText("");
+        profeCognom.setText("");
 
         // Actualizar tabla automáticamente
         tablaProfesores.getItems().clear();

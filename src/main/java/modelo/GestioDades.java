@@ -151,7 +151,7 @@ public class GestioDades {
                                 resultSet.getString(6),
                                 resultSet.getString(7),
                                 resultSet.getInt(8),
-                                resultSet.getString("color")
+                                resultSet.getString("color")//Hacemos referencia a color ya que es clave ajena
                         ));
             }
         } catch (Exception e) {
@@ -162,14 +162,14 @@ public class GestioDades {
     }
 //---------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
-    //Metodo añadir alumno mediante estructura
+    //Metodo añadir alumno 
 
     public void AfegirAlumne(Alumne alumne, Grados grados) throws SQLException {
         Connection connection = new Connexio().connecta();
         String SQL = "INSERT INTO alumnos VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ordre = connection.prepareStatement(SQL);
         try {
-            ordre.setInt(1, this.generarIdAlumnos());
+            ordre.setInt(1, this.generarIdAlumnos());//Ponemos el generador de indices
             ordre.setString(2, alumne.getNombre());
             ordre.setString(3, alumne.getApellidos());
             ordre.setString(4, alumne.getNombre_apellidos());
@@ -177,7 +177,7 @@ public class GestioDades {
             ordre.setString(6, alumne.getData_naix());
             ordre.setString(7, alumne.getDireccion());
             ordre.setInt(8, alumne.getCod_postal());
-            ordre.setString(9, grados.getColor());
+            ordre.setString(9, grados.getColor());//Referencia de grados clave ajena
 
             ordre.executeUpdate();
         } catch (Exception e) {
@@ -191,7 +191,7 @@ public class GestioDades {
     public void eliminarAlumnos(int ID) throws SQLException {
 
         Connection connection = new Connexio().connecta();
-        String SQL = "DELETE FROM alumnos WHERE alumnos.id_alumno = " + ID;//Consulta SQL para delete
+        String SQL = "DELETE FROM alumnos WHERE alumnos.id_alumno = " + ID;
         PreparedStatement ordreEliminar = connection.prepareStatement(SQL);
         try {
             connection.createStatement().execute(SQL);
@@ -202,8 +202,14 @@ public class GestioDades {
 
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
+    //Metodo para modificarAlumnos
     public void modificarAlumnos(Integer Id_alumno, Grados grados, String nom, String cognom, String nombre_apellidos, String data_naix, String correo_elec, String direccion, Integer codPostal) throws SQLException {
-        String sql = "UPDATE ALUMNOS SET NOMBRE=?, APELLIDOS=?, NOMBRE_APELLIDO=?, CORREO_ELEC=?, DATA_NAIX=?, DIRECCION=?, COD_POSTAL=?, COLOR=? WHERE ID_ALUMNO=?";
+        String sql = "UPDATE ALUMNOS SET NOMBRE=?, "
+                + "APELLIDOS=?, NOMBRE_APELLIDO=?, "
+                + "CORREO_ELEC=?, DATA_NAIX=?, "
+                + "DIRECCION=?, COD_POSTAL=?, "
+                + "COLOR=? "
+                + "WHERE ID_ALUMNO=?";
 
         try {
             Connection connection = new Connexio().connecta();
@@ -215,7 +221,7 @@ public class GestioDades {
             ordreModificar.setString(5, data_naix);
             ordreModificar.setString(6, direccion);
             ordreModificar.setInt(7, codPostal);
-            ordreModificar.setString(8, grados.getColor());
+            ordreModificar.setString(8, grados.getColor()); //Usamos el getColor para coger el color de grados
             ordreModificar.setInt(9, Id_alumno);
 
             ordreModificar.executeUpdate();
@@ -241,7 +247,7 @@ public class GestioDades {
                         new Clases(
                                 resultSet.getInt(1),
                                 resultSet.getString(2),
-                                resultSet.getString("nombre_apellidos_profesor")
+                                resultSet.getString("nombre_apellidos_profesor")//Hacemos referencia a nombre_apellidos_profesor que es clave ajena
                         ));
             }
         } catch (Exception e) {
@@ -260,9 +266,9 @@ public class GestioDades {
         PreparedStatement ordre = connection.prepareStatement(SQL);
         try {
 
-            ordre.setInt(1, this.generarIdClases());
+            ordre.setInt(1, this.generarIdClases());//Añadimos generador de indices de clases
             ordre.setString(2, clase.getHorario());
-            ordre.setString(3, profesor.getNombre_apellidos());
+            ordre.setString(3, profesor.getNombre_apellidos());//Referencia a clave ajena nombre_apellidos
             ordre.execute();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
@@ -275,7 +281,7 @@ public class GestioDades {
     public void eliminarClases(int ID) throws SQLException {
 
         Connection connection = new Connexio().connecta();
-        String SQL = "DELETE FROM clases WHERE clases.id_clase = " + ID;//Consulta SQL para delete
+        String SQL = "DELETE FROM clases WHERE clases.id_clase = " + ID;
         PreparedStatement ordreEliminar = connection.prepareStatement(SQL);
         try {
             connection.createStatement().execute(SQL);
@@ -294,7 +300,7 @@ public class GestioDades {
             Connection connection = new Connexio().connecta();
             PreparedStatement ordreModificar = connection.prepareStatement(sql);
             ordreModificar.setString(1, horario);
-            ordreModificar.setString(2, professor.toString());
+            ordreModificar.setString(2, professor.toString());//Referencia a metodo to string de profesor
             ordreModificar.setInt(3, id_clase);
             ordreModificar.executeUpdate();
         } catch (Exception e) {
@@ -309,7 +315,7 @@ public class GestioDades {
 
         Connection connection = new Connexio().connecta();
         ObservableList<Professor> llistaProfe = FXCollections.observableArrayList();
-        String SQL = "SELECT * FROM profesores";//Consulta SQL para select
+        String SQL = "SELECT * FROM profesores";
 
         //Estructura general de la tabla
         try {
@@ -336,10 +342,10 @@ public class GestioDades {
     public void AfegirProfesor(Professor profesor) throws SQLException { //Ponemos  tambien el objeto de clases porque tenemos una foreign key de clases
 
         Connection connection = new Connexio().connecta();
-        String SQL = "INSERT INTO profesores VALUES (?,?,?,?)";//Consulta SQL para insert
+        String SQL = "INSERT INTO profesores VALUES (?,?,?,?)";
         PreparedStatement ordre = connection.prepareStatement(SQL);
         try {
-            ordre.setInt(1, this.generarIdProfesores());
+            ordre.setInt(1, this.generarIdProfesores());//Añadimos generador de indice automatico de profesores
             ordre.setString(2, profesor.getNombre());
             ordre.setString(3, profesor.getApellidos());
             ordre.setString(4, profesor.getNombre_apellidos());
@@ -354,7 +360,7 @@ public class GestioDades {
     //Metodo borrar profesor
     public void eliminarProfesor(int ID) throws SQLException {
         Connection connection = new Connexio().connecta();
-        String SQL = "DELETE FROM profesores WHERE profesores.id_profesor = " + ID;//Consulta SQL para delete
+        String SQL = "DELETE FROM profesores WHERE profesores.id_profesor = " + ID;
         PreparedStatement ordreEliminar = connection.prepareStatement(SQL);
         try {
             connection.createStatement().execute(SQL);
@@ -367,7 +373,7 @@ public class GestioDades {
     //---------------------------------------------------------------------------------------------------------------------------
     //Metodo para modificar profesor
     public void modificarProfesor(Integer id_profesor, String Nombre, String Apellidos, String nombre_apellido) throws SQLException { //Ponemos  tambien el objeto de clases porque tenemos una foreign key de clases
-        String SQL = "UPDATE PROFESORES SET NOMBRE=?,  APELLIDOS=?, NOMBRE_APELLIDO=? WHERE ID_PROFESOR=?";//Consulta SQL para update
+        String SQL = "UPDATE PROFESORES SET NOMBRE=?,  APELLIDOS=?, NOMBRE_APELLIDO=? WHERE ID_PROFESOR=?";
         Connection conection = new Connexio().connecta();
         PreparedStatement ordreModificar = conection.prepareStatement(SQL);
         try {
@@ -414,7 +420,7 @@ public class GestioDades {
         String SQL = "INSERT INTO grados VALUES (?,?)";//Consulta SQL para insert
         PreparedStatement ordre = connection.prepareStatement(SQL);
         try {
-            ordre.setInt(1, this.generarIdGrados());
+            ordre.setInt(1, this.generarIdGrados());//Añadimos indice automatico de grados
             ordre.setString(2, grados.getColor());
             ordre.execute();
         } catch (Exception e) {
@@ -458,17 +464,15 @@ public class GestioDades {
     public ArrayList getListaGrados() {
         ArrayList mListaGrados = new ArrayList();
         Connection conection = new Connexio().connecta();
-        Statement consulta;
-        ResultSet resultado;
 
         try {
-            consulta = conection.createStatement();
-            resultado = consulta.executeQuery("SELECT * FROM grados ");
+            Statement consulta = conection.createStatement();
+            ResultSet resultado = consulta.executeQuery("SELECT * FROM grados ");
             while (resultado.next()) {
                 mListaGrados.add(
                         new Grados(
-                                resultado.getInt("id_grado"),
-                                resultado.getString("color")
+                                resultado.getInt("id_grado"),//Cogemos los datos directamente
+                                resultado.getString("color")//Cogemos los datos directamente
                         ));
             }
         } catch (SQLException e) {
@@ -483,19 +487,17 @@ public class GestioDades {
     public ArrayList getListaProfesores() {
         ArrayList mListaProfesores = new ArrayList();
         Connection conection = new Connexio().connecta();
-        Statement consulta;
-        ResultSet resultado;
 
         try {
-            consulta = conection.createStatement();
-            resultado = consulta.executeQuery("SELECT * FROM profesores ");
+            Statement consulta = conection.createStatement();
+            ResultSet resultado = consulta.executeQuery("SELECT * FROM profesores ");
             while (resultado.next()) {
                 mListaProfesores.add(
                         new Professor(
-                                resultado.getInt("id_profesor"),
-                                resultado.getString("nombre"),
-                                resultado.getString("apellidos"),
-                                resultado.getString("nombre_apellido")));
+                                resultado.getInt("id_profesor"),//Cogemos los datos directamente
+                                resultado.getString("nombre"),//Cogemos los datos directamente
+                                resultado.getString("apellidos"),//Cogemos los datos directamente
+                                resultado.getString("nombre_apellido")));//Cogemos los datos directamente
 
             }
         } catch (SQLException e) {
@@ -510,23 +512,21 @@ public class GestioDades {
     public ArrayList getListaAlunos() {
         ArrayList mListaAlumnos = new ArrayList();
         Connection conection = new Connexio().connecta();
-        Statement consulta;
-        ResultSet resultado;
 
         try {
-            consulta = conection.createStatement();
-            resultado = consulta.executeQuery("SELECT * FROM alumnos ");
+            Statement consulta = conection.createStatement();
+            ResultSet resultado = consulta.executeQuery("SELECT * FROM alumnos ");
             while (resultado.next()) {
                 mListaAlumnos.add(
-                        new Alumne(resultado.getInt("id_alumno"),
-                                resultado.getString("nombre"),
-                                resultado.getString("apellidos"),
-                                resultado.getString("nombre_apellido"),
-                                resultado.getString("data_naix"),
-                                resultado.getString("correo_elec"),
-                                resultado.getString("direccion"),
-                                resultado.getInt("cod_postal"),
-                                resultado.getString("color")));
+                        new Alumne(resultado.getInt("id_alumno"),//Cogemos los datos directamente
+                                resultado.getString("nombre"),//Cogemos los datos directamente
+                                resultado.getString("apellidos"),//Cogemos los datos directamente
+                                resultado.getString("nombre_apellido"),//Cogemos los datos directamente
+                                resultado.getString("data_naix"),//Cogemos los datos directamente
+                                resultado.getString("correo_elec"),//Cogemos los datos directamente
+                                resultado.getString("direccion"),//Cogemos los datos directamente
+                                resultado.getInt("cod_postal"),//Cogemos los datos directamente
+                                resultado.getString("color")));//Cogemos los datos directamente
 
             }
         } catch (SQLException e) {
@@ -538,33 +538,35 @@ public class GestioDades {
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
     //Observable list de ProfesorAlumne donde mostramos un JOIN de los alumnos que corresponden a cada profesor
-    public ObservableList llistaProfeAlumnos() throws SQLException {
-
+    public ObservableList<ProfesorAlumne> llistaProfeAlumnos() throws SQLException {
         Connection connection = new Connexio().connecta();
         ObservableList<ProfesorAlumne> llistaProfeAlumnos = FXCollections.observableArrayList();
-        String SQL = "SELECT p.nombre_apellido AS nombre_profesor, a.nombre_apellido AS nombre_alumno\n"
-                + "FROM tienen t\n"
-                + "JOIN profesores p ON p.id_profesor = t.id_profesor\n"
-                + "JOIN alumnos a ON a.id_alumno = t.id_alumno\n"
+
+        String SQL = "SELECT p.nombre_apellido AS nombre_profesor, a.nombre_apellido AS nombre_alumno "
+                + "FROM tienen t "
+                + "JOIN profesores p ON p.id_profesor = t.id_profesor "
+                + "JOIN alumnos a ON a.id_alumno = t.id_alumno "
                 + "ORDER BY p.nombre_apellido, a.nombre_apellido";
 
         try {
             Statement ordreProfeAlumnos = connection.createStatement();
             ResultSet resultSet = ordreProfeAlumnos.executeQuery(SQL);
-            while (resultSet.next()) {
-                llistaProfeAlumnos.add(
-                        new ProfesorAlumne(resultSet.getString(1),
-                                resultSet.getString(2)));
 
+            while (resultSet.next()) {
+                llistaProfeAlumnos.add(new ProfesorAlumne(
+                        resultSet.getString("nombre_profesor"),
+                        resultSet.getString("nombre_alumno")
+                ));
             }
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
+
         return llistaProfeAlumnos;
     }
-    //---------------------------------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------------------------------
 
+    //---------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------
 // Metodo para insertarProfesorAlumno a la tabla tienen, mediante sus id, mostrando el nombre_apellido
     public void insertarProfesorAlumno(String nombreProfesor, String nombreAlumno) throws SQLException {
 
@@ -618,7 +620,7 @@ public class GestioDades {
             // Cierra la conexión y la declaración
             statement.close();
             connection.close();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             // Muestra una alerta en caso de error
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
