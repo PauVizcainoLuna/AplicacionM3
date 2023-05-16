@@ -42,100 +42,104 @@ public class GestioDades {
     //---------------------------------------------------------------------------------------------------------------------------
     //Metodo para generar id automatica de alumnos
     public int generarIdAlumnos() {
-        String SQL = "SELECT id_alumno FROM alumnos ORDER BY id_alumno ASC", toArray = "";
-        Connection connection = new Connexio().connecta();
-        try {
-            Statement ordreAlumnes = connection.createStatement();
-            ResultSet resultSet = ordreAlumnes.executeQuery(SQL);
+        String SQL = "SELECT MAX(id_alumno) FROM alumnos";
+        int id = 0;
 
-            while (resultSet.next()) {
-                toArray += resultSet.getString(1) + ";";
+        try {
+            Connection connection = new Connexio().connecta();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
             }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
-        if (toArray == "") {
-            this.mostrarAlertWarning("ERROR DE INDICES");
-            return 0;
-        }
-        String[] array = toArray.split(";");
-        int id = Integer.parseInt(array[array.length - 1]) + 1;
-        return id;
+
+        return id + 1;
     }
 
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
     //Metodo para generar id automatica de clases
     public int generarIdClases() {
-        String SQL = "SELECT id_clase FROM clases ORDER BY id_clase ASC", toArray = "";
-        Connection connection = new Connexio().connecta();
-        try {
-            Statement ordreClases = connection.createStatement();
-            ResultSet resultSet = ordreClases.executeQuery(SQL);
+        String SQL = "SELECT MAX(id_clase) FROM clases";
+        int id = 0;
 
-            while (resultSet.next()) {
-                toArray += resultSet.getString(1) + ";";
+        try {
+            Connection connection = new Connexio().connecta();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
             }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
-        if (toArray == "") {
-            this.mostrarAlertWarning("ERROR DE INDICES");
-            return 0;
-        }
-        String[] array = toArray.split(";");
-        int id = Integer.parseInt(array[array.length - 1]) + 1;
-        return id;
+
+        return id + 1;
     }
+
     //---------------------------------------------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------------------------------------------
     //Metodo para generar id automatica de grados
-
     public int generarIdGrados() {
-        String SQL = "SELECT id_grado FROM grados ORDER BY id_grado ASC", toArray = "";
-        Connection connection = new Connexio().connecta();
-        try {
-            Statement ordreClases = connection.createStatement();
-            ResultSet resultSet = ordreClases.executeQuery(SQL);
+        String SQL = "SELECT MAX(id_grado) FROM grados";
+        int id = 0;
 
-            while (resultSet.next()) {
-                toArray += resultSet.getString(1) + ";";
+        try {
+            Connection connection = new Connexio().connecta();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
             }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
-        if (toArray == "") {
-            this.mostrarAlertWarning("ERROR DE INDICES");
-            return 0;
-        }
-        String[] array = toArray.split(";");
-        int id = Integer.parseInt(array[array.length - 1]) + 1;
-        return id;
+
+        return id + 1;
     }
+
 //---------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
     //Metodo para generar id automatica de profesores
-
     public int generarIdProfesores() {
-        String SQL = "SELECT id_profesor FROM profesores ORDER BY id_profesor ASC", toArray = "";
-        Connection connection = new Connexio().connecta();
-        try {
-            Statement ordreClases = connection.createStatement();
-            ResultSet resultSet = ordreClases.executeQuery(SQL);
+        String SQL = "SELECT MAX(id_profesor) FROM profesores";
+        int id = 0;
 
-            while (resultSet.next()) {
-                toArray += resultSet.getString(1) + ";";
+        try {
+            Connection connection = new Connexio().connecta();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL);
+
+            if (resultSet.next()) {
+                id = resultSet.getInt(1);
             }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (Exception e) {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
-        if (toArray == "") {
-            this.mostrarAlertWarning("ERROR DE INDICES");
-            return 0;
-        }
-        String[] array = toArray.split(";");
-        int id = Integer.parseInt(array[array.length - 1]) + 1;
-        return id;
+
+        return id + 1;
     }
 
 //---------------------------------------------------------------------------------------------------------------------------
