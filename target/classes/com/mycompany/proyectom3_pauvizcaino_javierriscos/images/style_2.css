@@ -82,6 +82,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-image:url("cinturon2.png")
 }
 
+.imageProfesores2icono{
+    -fx-image:url("iconouser.png")
+}
+
+.imageProfesores2icono2{
+    -fx-image:url("iconouser2.png")
+}
+
 /*Estilo para las letras del header columna de la tableview*/
 .table-view .column-header .label {
     -fx-text-fill: white;

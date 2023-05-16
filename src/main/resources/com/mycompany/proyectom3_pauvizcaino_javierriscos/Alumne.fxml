@@ -73,9 +73,9 @@
           <TableColumn fx:id="nombreAlumnos" prefWidth="97.60003662109375" text="NOMBRE" />
           <TableColumn fx:id="apellidosAlumnos" prefWidth="102.4000244140625" text="APELLIDOS" />
             <TableColumn fx:id="nombreApellidosAlumnos" prefWidth="131.20001220703125" text="NOMBRE_APELLIDOS" />
-            <TableColumn fx:id="fechaAlumnos" prefWidth="73.60003662109375" text="FECHA NACIMIENTO" />
-            <TableColumn fx:id="correoAlumnos" prefWidth="91.20001220703125" text="CORREO" />
-            <TableColumn fx:id="direccionAlumnos" prefWidth="83.20001220703125" text="DIRECCION" />
+            <TableColumn fx:id="fechaAlumnos" prefWidth="73.60003662109375" text="CORREO" />
+            <TableColumn fx:id="correoAlumnos" prefWidth="96.7999267578125" text="FECHA NACIMIENTO" />
+            <TableColumn fx:id="direccionAlumnos" prefWidth="79.2000732421875" text="DIRECCION" />
             <TableColumn fx:id="codigoAlumnos" prefWidth="102.39999999999998" text="CODIGO POSTAL" />
             <TableColumn fx:id="colorGradoAlumnos" prefWidth="75.0" text="COLOR" />
         </columns>

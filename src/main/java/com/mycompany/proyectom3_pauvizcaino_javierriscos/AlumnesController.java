@@ -144,7 +144,6 @@ public class AlumnesController {
                 usuariCodPostal.setText("");
                 cmbGrados.setValue(null);
                 
-                gestio.mostrarAlertCorrecto("HA AÑADIDO EL ALUMNO CORRECTAMENTE");
             }
         } catch (Exception e) {
             gestio.mostrarAlertWarning("ERROR: " + e.getMessage());
@@ -161,7 +160,6 @@ public class AlumnesController {
         try {
             if (tablaAlumnos.getSelectionModel().getSelectedItem() != null) {
                 gestio.eliminarAlumnos(tablaAlumnos.getSelectionModel().getSelectedItem().getId_alumno());
-                gestio.mostrarAlertCorrecto("HA ELIMINADO AL ALUMNO CORRECTAMENTE");
             } else {
                 // Mostrar mensaje de error si no se ha seleccionado ningún alumno
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un alumno.");
@@ -196,7 +194,6 @@ public class AlumnesController {
                         usuariDireccio.getText(),
                         Integer.parseInt(usuariCodPostal.getText()));
                 
-                gestio.mostrarAlertCorrecto("HA MODIFICADO EL ALUMNO CORRECTAMENTE");
             } else {
                 // Mensaje de error si no se han completado todos los campos
                 gestio.mostrarAlertWarning("ERROR: Debes seleccionar un alumno, completar todos los campos y seleccionar un grado.");
