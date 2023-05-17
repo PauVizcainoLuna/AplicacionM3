@@ -19,7 +19,6 @@ public class ProfesorAlumne {
         this.nombreAlumno = nombreAlumno;
     }
 
-    // Getters y setters
     public String getNombreProfesor() {
         return nombreProfesor;
     }
