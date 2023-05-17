@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -23,5 +27,18 @@
             <Font name="Arial Black" size="12.0" />
          </font>
       </MenuButton>
+      <TableView fx:id="tablaAlumnosGrados" layoutX="22.0" layoutY="465.0" prefHeight="247.0" prefWidth="610.0">
+         <columns>
+            <TableColumn fx:id="nombreAlumno" prefWidth="304.79998779296875" text="ALUMNO" />
+            <TableColumn fx:id="colorGrado" prefWidth="304.800048828125" text="GRADO" />
+         </columns>
+      </TableView>
+      <Label layoutX="15.0" layoutY="70.0" prefHeight="28.0" prefWidth="623.0" text="LISTA DE LOS ALUMNOS CON SU CORRESPONDIENTE GRADO" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="247.0" fitWidth="272.0" layoutX="16.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" styleClass="imageAlumnoGrado1" />
+      <ImageView fitHeight="331.0" fitWidth="390.0" layoutX="310.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" styleClass="imageAlumnoGrado2" />
    </children>
 </AnchorPane>

@@ -82,12 +82,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-image:url("cinturon2.png")
 }
 
+/*Estilo para la imagen 1 de profesores2*/
 .imageProfesores2icono{
     -fx-image:url("iconouser.png")
 }
 
+/*Estilo para la imagen 2 de profesores2*/
 .imageProfesores2icono2{
     -fx-image:url("iconouser2.png")
+}
+
+/*Estilo para la imagen de AlumnoGrado1*/
+.imageAlumnoGrado1{
+    -fx-image:url("alumnoGrado1.png")
+}
+
+/*Estilo para la imagen de AlumnoGrado2*/
+.imageAlumnoGrado2{
+    -fx-image:url("alumnoGrado2.png")
 }
 
 /*Estilo para las letras del header columna de la tableview*/

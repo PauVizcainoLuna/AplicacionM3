@@ -19,6 +19,11 @@ public class Alumne {
     public Alumne(String nombre_apellidos) {
         this.nombre_apellidos = nombre_apellidos;
     }
+
+    public Alumne(String nombre_apellidos, String colorGrado) {
+        this.nombre_apellidos = nombre_apellidos;
+        this.colorGrado = colorGrado;
+    }
     
 
     public Alumne(int id_alumno, String nombre, String apellidos, String nombre_apellidos, String data_naix, String correo_elec, String direccion, int cod_postal, String colorGrado) {
@@ -32,7 +37,7 @@ public class Alumne {
         this.cod_postal = cod_postal;
         this.colorGrado = colorGrado;
     }
-
+    
     public int getId_alumno() {
         return id_alumno;
     }

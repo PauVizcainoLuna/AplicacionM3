@@ -126,7 +126,7 @@ public class GestioDades {
 
         Connection connection = new Connexio().connecta();
         ObservableList<Alumne> llistaAlumnes = FXCollections.observableArrayList();
-        String SQL = "SELECT * FROM alumnos";//Consulta SQL para select
+        String SQL = "SELECT * FROM alumnos";
 
         //Estructura general de la tabla
         try {
@@ -150,6 +150,32 @@ public class GestioDades {
             this.mostrarAlertWarning("ERROR: " + e.getMessage());
         }
         return llistaAlumnes;
+
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------
+    //OservableList de alumnos
+    public ObservableList llistaAlumnesGrados() throws SQLException {
+
+        Connection connection = new Connexio().connecta();
+        ObservableList<Alumne> llistaAlumnesGrados = FXCollections.observableArrayList();
+        String SQL = "SELECT nombre_apellido, color FROM alumnos ORDER BY nombre_apellido ASC";
+
+        //Estructura general de la tabla
+        try {
+            Statement ordreAlumnes = connection.createStatement();
+            ResultSet resultSet = ordreAlumnes.executeQuery(SQL);
+            while (resultSet.next()) {
+                llistaAlumnesGrados.add(
+                        new Alumne(
+                                resultSet.getString(1),
+                                resultSet.getString("color")//Hacemos referencia a color ya que es clave ajena
+                        ));
+            }
+        } catch (Exception e) {
+            this.mostrarAlertWarning("ERROR: " + e.getMessage());
+        }
+        return llistaAlumnesGrados;
 
     }
 //---------------------------------------------------------------------------------------------------------------------------
@@ -573,12 +599,12 @@ public class GestioDades {
 
         try {
             // Crea una declaración preparada para ejecutar la consulta SQL
-            PreparedStatement statement = connection.prepareStatement(SQL);
+            PreparedStatement ordreInsertar = connection.prepareStatement(SQL);
 
             // Establece los valores de los parámetros en la consulta preparada
-            statement.setString(1, nombreProfesor);
-            statement.setString(2, nombreAlumno);
-            statement.execute();
+            ordreInsertar.setString(1, nombreProfesor);
+            ordreInsertar.setString(2, nombreAlumno);
+            ordreInsertar.execute();
 
         } catch (Exception e) {
             // Muestra una alerta en caso de error
@@ -600,17 +626,17 @@ public class GestioDades {
                     + " AND id_alumno = (SELECT id_alumno FROM alumnos WHERE nombre_apellido = ?)";
 
             // Crea una declaración preparada para ejecutar la consulta SQL
-            PreparedStatement statement = connection.prepareStatement(SQL);
+            PreparedStatement ordreEliminar = connection.prepareStatement(SQL);
 
             // Establece los valores de los parámetros en la consulta preparada
-            statement.setString(1, nombreProfesor);
-            statement.setString(2, nombreAlumno);
+            ordreEliminar.setString(1, nombreProfesor);
+            ordreEliminar.setString(2, nombreAlumno);
 
             // Ejecuta la consulta
-            statement.executeUpdate();
+            ordreEliminar.executeUpdate();
 
             // Cierra la conexión y la declaración
-            statement.close();
+            ordreEliminar.close();
             connection.close();
         } catch (Exception e) {
             // Muestra una alerta en caso de error

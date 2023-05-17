@@ -50,10 +50,6 @@ public class GradosController {
         Eliminar.setShowDelay(Duration.ONE);
     }
 
-    //Metodo para cambiar a grados2
-    public void cambiarPantalla() throws IOException {
-        App.setRoot("Grados2");
-    }
     //---------------------------------------------------------------------------------------------------------------------------
 
     public void tornarEnrere() throws IOException {
